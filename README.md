@@ -25,6 +25,16 @@ GRANT ALL ON laravel.* TO 'docker'@'%' IDENTIFIED BY '123456';
 FLUSH PRIVILEGES;
 ###
 
+### copy .env.example to .env
+```
+cp .env.example .env
+```
+
+### generate app key
+```
+docker-compose exec app php artisan key:generate 
+```
+
 # migrate db
 ```
 docker-compose exec app php artisan migrate

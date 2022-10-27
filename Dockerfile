@@ -35,6 +35,7 @@ RUN docker-php-ext-install gd
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+
 # Add user for laravel application
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
@@ -47,6 +48,9 @@ COPY --chown=www:www . /var/www
 
 # Change current user to www
 USER www
+
+# Install php dependency
+RUN composer install
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
